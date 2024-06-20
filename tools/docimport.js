@@ -10,6 +10,6 @@ schema.constructors.forEach(constructor => {
     var docs = $("#dev_page_content").find("p").first().text().trim()
 
     if(docs !== "")
-      fs.appendFileSync(`../docs/constructors/${constructor.predicate}.md`, docs)
+      fs.writeFileSync(`../docs/constructors/${constructor.predicate}.md`, docs)
   })
 })

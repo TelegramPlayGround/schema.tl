@@ -47,7 +47,7 @@ async function exec(cmd, opts) {
 async function start() {
   const layerRegex = /\/\/ LAYER ([0-9]+)/
 
-  const { body: currentSchema } = await request(`https://raw.githubusercontent.com/tjhorner/schema.tl/master/resources/schema.tl?${Date.now()}`)
+  const { body: currentSchema } = await request(`https://raw.githubusercontent.com/TelegramPlayGround/schema.tl/master/resources/schema.tl?${Date.now()}`)
   const currentLayerNumber = parseInt(currentSchema.match(layerRegex)[1])
   console.log("Latest fetched layer number:", currentLayerNumber)
 
@@ -61,7 +61,7 @@ async function start() {
     console.log("Checking for open PRs before we go any further...")
 
     const { data: openPulls } = await octokit.pulls.list({
-      owner: "tjhorner",
+      owner: "TelegramPlayGround",
       repo: "schema.tl",
       state: "open",
       head: `tjhorner:layer-${newLayerNumber}`
@@ -74,20 +74,10 @@ async function start() {
     }
 
     console.log("No open PRs for this layer; continuing...")
-
-    await rimraf(config.REPO_WORKING_DIRECTORY)
-
     console.log("Creating working directory if it does not already exist...")
-
-    await fs.mkdir(config.REPO_WORKING_DIRECTORY)
-
     console.log("Cloning repository...")
 
-    await exec(`git clone --depth=1 git@github.com:tjhorner/schema.tl.git ${config.REPO_WORKING_DIRECTORY}`)
-
-    console.log(`Checking out new branch layer-${newLayerNumber}...`)
-
-    await exec(`git checkout -b layer-${newLayerNumber}`, { cwd: config.REPO_WORKING_DIRECTORY })
+    console.log(await fs.readdir(config.REPO_WORKING_DIRECTORY))
 
     console.log("Converting new schema to JSON...")
 
@@ -96,8 +86,13 @@ async function start() {
 
     console.log("Writing new schema to working directory...")
 
-    await fs.writeFile(path.join(config.REPO_WORKING_DIRECTORY, "resources", "schema.json"), JSON.stringify(newSchema, null, 2))
-    await fs.writeFile(path.join(config.REPO_WORKING_DIRECTORY, "resources", "schema.tl"), latestSchema)
+    try {
+      await fs.writeFile(path.join(config.REPO_WORKING_DIRECTORY, "resources", "schema.json"), JSON.stringify(newSchema, null, 2))
+      await fs.writeFile(path.join(config.REPO_WORKING_DIRECTORY, "resources", "schema.tl"), latestSchema)
+    }
+    catch (e) {
+      console.log(e);
+    }
 
     console.log("Ensuring all documentation files for methods/constructors exist...")
 
@@ -148,11 +143,8 @@ async function start() {
 
     console.log("Pushing changes to GitHub...")
 
-    await exec(`git push origin layer-${newLayerNumber}`, {
-      cwd: config.REPO_WORKING_DIRECTORY,
-      env: {
-        GIT_SSH_COMMAND: `ssh -o IdentitiesOnly=yes -i ${config.GIT_PRIVATE_KEY_PATH}`
-      }
+    await exec(`git push origin master`, {
+      cwd: config.REPO_WORKING_DIRECTORY
     })
 
     console.log("OK, done! Cleaning up working directory...")
@@ -176,7 +168,7 @@ async function start() {
     newDocsText += "\n\nDocumentation files were created for these new constructors and methods."
 
     const { data: pr } = await octokit.pulls.create({
-      owner: "tjhorner",
+      owner: "TelegramPlayGround",
       repo: "schema.tl",
       head: `layer-${newLayerNumber}`,
       base: "master",
@@ -185,17 +177,17 @@ async function start() {
     })
 
     await octokit.issues.addLabels({
-      owner: "tjhorner",
+      owner: "TelegramPlayGround",
       repo: "schema.tl",
       number: pr.number,
       labels: [ "layer update" ]
     })
 
     await octokit.pulls.createReviewRequest({
-      owner: "tjhorner",
+      owner: "TelegramPlayGround",
       repo: "schema.tl",
       number: pr.number,
-      reviewers: [ "tjhorner" ]
+      reviewers: [ ]
     })
 
     console.log("PR created, check it out:", pr.html_url)

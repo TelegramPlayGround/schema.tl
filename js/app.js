@@ -188,19 +188,19 @@ tlDocsApp.factory("SchemaService", function(schema) {
 tlDocsApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when("/", {
-      templateUrl: "/views/index.html",
+      templateUrl: "./views/index.html",
       controller: "mainController"
     })
     .when("/constructor/:predicate", {
-      templateUrl: "/views/constructors/show.html",
+      templateUrl: "./views/constructors/show.html",
       controller: "viewConstructorController"
     })
     .when("/method/:method", {
-      templateUrl: "/views/methods/show.html",
+      templateUrl: "./views/methods/show.html",
       controller: "viewMethodController"
     })
     .when("/type/:type", {
-      templateUrl: "/views/types/show.html",
+      templateUrl: "./views/types/show.html",
       controller: "viewTypeController"
     })
     .otherwise({

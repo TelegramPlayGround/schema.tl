@@ -1,0 +1,44 @@
+name: Import documentation
+
+on:
+  workflow_dispatch: {} # Allow manually kicking off builds
+
+jobs:
+  check_for_update:
+    name: Check for NEW documentation
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node 14
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Cache npm packages
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('tools/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - name: Install npm packages
+      working-directory: ./tools/
+      run: npm install request cheerio
+    - name: Run docimport tool
+      working-directory: ./
+      env:
+        GITHUB_ACCESS_TOKEN: ${{ secrets.SCHEMABOT_ACCESS_TOKEN }}
+        REPO_WORKING_DIRECTORY: ./working
+        GIT_NAME: schemabot
+        GIT_EMAIL: schemabot@horner.tj
+        GIT_PRIVATE_KEY_PATH: ~/.ssh/id_rsa
+        NODE_NO_WARNINGS: "1"
+      run: cd tools && node docimport.js
+    - name: Update and Push changes
+      run: |
+        git add -A
+        git -c "user.name=schemabot" -c "user.email=schemabot@horner.tj" commit -m "[chore] Import documentation from core.telegram.org"
+        git push origin master
