@@ -658,6 +658,21 @@
       "type": "InputMedia"
     },
     {
+      "id": 2858819523,
+      "predicate": "inputMediaPaidMedia",
+      "params": [
+        {
+          "name": "stars_amount",
+          "type": "long"
+        },
+        {
+          "name": "extended_media",
+          "type": "Vector<InputMedia>"
+        }
+      ],
+      "type": "InputMedia"
+    },
+    {
       "id": 480546647,
       "predicate": "inputChatPhotoEmpty",
       "params": [],
@@ -1828,6 +1843,10 @@
           "type": "flags2.12?true"
         },
         {
+          "name": "paid_media_allowed",
+          "type": "flags2.14?true"
+        },
+        {
           "name": "id",
           "type": "long"
         },
@@ -2781,6 +2800,21 @@
         {
           "name": "until_date",
           "type": "int"
+        }
+      ],
+      "type": "MessageMedia"
+    },
+    {
+      "id": 2827297937,
+      "predicate": "messageMediaPaidMedia",
+      "params": [
+        {
+          "name": "stars_amount",
+          "type": "long"
+        },
+        {
+          "name": "extended_media",
+          "type": "Vector<MessageExtendedMedia>"
         }
       ],
       "type": "MessageMedia"
@@ -6874,7 +6908,7 @@
       "type": "Update"
     },
     {
-      "id": 1517529484,
+      "id": 3584300836,
       "predicate": "updateMessageExtendedMedia",
       "params": [
         {
@@ -6887,7 +6921,7 @@
         },
         {
           "name": "extended_media",
-          "type": "MessageExtendedMedia"
+          "type": "Vector<MessageExtendedMedia>"
         }
       ],
       "type": "Update"
@@ -7388,6 +7422,60 @@
         {
           "name": "balance",
           "type": "long"
+        }
+      ],
+      "type": "Update"
+    },
+    {
+      "id": 513998247,
+      "predicate": "updateBusinessBotCallbackQuery",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "query_id",
+          "type": "long"
+        },
+        {
+          "name": "user_id",
+          "type": "long"
+        },
+        {
+          "name": "connection_id",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "Message"
+        },
+        {
+          "name": "reply_to_message",
+          "type": "flags.2?Message"
+        },
+        {
+          "name": "chat_instance",
+          "type": "long"
+        },
+        {
+          "name": "data",
+          "type": "flags.0?bytes"
+        }
+      ],
+      "type": "Update"
+    },
+    {
+      "id": 2776936473,
+      "predicate": "updateStarsRevenueStatus",
+      "params": [
+        {
+          "name": "peer",
+          "type": "Peer"
+        },
+        {
+          "name": "status",
+          "type": "StarsRevenueStatus"
         }
       ],
       "type": "Update"
@@ -12493,7 +12581,7 @@
       "type": "auth.SentCodeType"
     },
     {
-      "id": 331943703,
+      "id": 10475318,
       "predicate": "auth.sentCodeTypeFirebaseSms",
       "params": [
         {
@@ -12503,6 +12591,10 @@
         {
           "name": "nonce",
           "type": "flags.0?bytes"
+        },
+        {
+          "name": "play_integrity_project_id",
+          "type": "flags.2?long"
         },
         {
           "name": "play_integrity_nonce",
@@ -12816,7 +12908,7 @@
       "type": "DraftMessage"
     },
     {
-      "id": 1070397423,
+      "id": 761606687,
       "predicate": "draftMessage",
       "params": [
         {
@@ -12850,6 +12942,10 @@
         {
           "name": "date",
           "type": "int"
+        },
+        {
+          "name": "effect",
+          "type": "flags.7?long"
         }
       ],
       "type": "DraftMessage"
@@ -20867,12 +20963,20 @@
       "type": "AttachMenuBotsBot"
     },
     {
-      "id": 202659196,
+      "id": 1294139288,
       "predicate": "webViewResultUrl",
       "params": [
         {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "fullsize",
+          "type": "flags.1?true"
+        },
+        {
           "name": "query_id",
-          "type": "long"
+          "type": "flags.0?long"
         },
         {
           "name": "url",
@@ -20880,17 +20984,6 @@
         }
       ],
       "type": "WebViewResult"
-    },
-    {
-      "id": 2284811963,
-      "predicate": "simpleWebViewResultUrl",
-      "params": [
-        {
-          "name": "url",
-          "type": "string"
-        }
-      ],
-      "type": "SimpleWebViewResult"
     },
     {
       "id": 211046684,
@@ -22270,17 +22363,6 @@
       "type": "messages.BotApp"
     },
     {
-      "id": 1008422669,
-      "predicate": "appWebViewResultUrl",
-      "params": [
-        {
-          "name": "url",
-          "type": "string"
-        }
-      ],
-      "type": "AppWebViewResult"
-    },
-    {
       "id": 3044185557,
       "predicate": "inlineBotWebView",
       "params": [
@@ -23004,9 +23086,13 @@
       "type": "StoriesStealthMode"
     },
     {
-      "id": 64088654,
+      "id": 3486113794,
       "predicate": "mediaAreaCoordinates",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
         {
           "name": "x",
           "type": "double"
@@ -23026,6 +23112,10 @@
         {
           "name": "rotation",
           "type": "double"
+        },
+        {
+          "name": "radius",
+          "type": "flags.0?double"
         }
       ],
       "type": "MediaAreaCoordinates"
@@ -23085,9 +23175,13 @@
       "type": "MediaArea"
     },
     {
-      "id": 3750443810,
+      "id": 3402974509,
       "predicate": "mediaAreaGeoPoint",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
         {
           "name": "coordinates",
           "type": "MediaAreaCoordinates"
@@ -23095,6 +23189,10 @@
         {
           "name": "geo",
           "type": "GeoPoint"
+        },
+        {
+          "name": "address",
+          "type": "flags.0?GeoPointAddress"
         }
       ],
       "type": "MediaArea"
@@ -23160,6 +23258,21 @@
         {
           "name": "msg_id",
           "type": "int"
+        }
+      ],
+      "type": "MediaArea"
+    },
+    {
+      "id": 926421125,
+      "predicate": "mediaAreaUrl",
+      "params": [
+        {
+          "name": "coordinates",
+          "type": "MediaAreaCoordinates"
+        },
+        {
+          "name": "url",
+          "type": "string"
         }
       ],
       "type": "MediaArea"
@@ -25400,6 +25513,12 @@
       "type": "StarsTransactionPeer"
     },
     {
+      "id": 1617438738,
+      "predicate": "starsTransactionPeerAds",
+      "params": [],
+      "type": "StarsTransactionPeer"
+    },
+    {
       "id": 198776256,
       "predicate": "starsTopupOption",
       "params": [
@@ -25431,7 +25550,7 @@
       "type": "StarsTopupOption"
     },
     {
-      "id": 3429923250,
+      "id": 766853519,
       "predicate": "starsTransaction",
       "params": [
         {
@@ -25441,6 +25560,14 @@
         {
           "name": "refund",
           "type": "flags.3?true"
+        },
+        {
+          "name": "pending",
+          "type": "flags.4?true"
+        },
+        {
+          "name": "failed",
+          "type": "flags.6?true"
         },
         {
           "name": "id",
@@ -25469,6 +25596,26 @@
         {
           "name": "photo",
           "type": "flags.2?WebDocument"
+        },
+        {
+          "name": "transaction_date",
+          "type": "flags.5?int"
+        },
+        {
+          "name": "transaction_url",
+          "type": "flags.5?string"
+        },
+        {
+          "name": "bot_payload",
+          "type": "flags.7?bytes"
+        },
+        {
+          "name": "msg_id",
+          "type": "flags.8?int"
+        },
+        {
+          "name": "extended_media",
+          "type": "flags.9?Vector<MessageMedia>"
         }
       ],
       "type": "StarsTransaction"
@@ -25503,6 +25650,170 @@
         }
       ],
       "type": "payments.StarsStatus"
+    },
+    {
+      "id": 3900361664,
+      "predicate": "foundStory",
+      "params": [
+        {
+          "name": "peer",
+          "type": "Peer"
+        },
+        {
+          "name": "story",
+          "type": "StoryItem"
+        }
+      ],
+      "type": "FoundStory"
+    },
+    {
+      "id": 3806230327,
+      "predicate": "stories.foundStories",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "count",
+          "type": "int"
+        },
+        {
+          "name": "stories",
+          "type": "Vector<FoundStory>"
+        },
+        {
+          "name": "next_offset",
+          "type": "flags.0?string"
+        },
+        {
+          "name": "chats",
+          "type": "Vector<Chat>"
+        },
+        {
+          "name": "users",
+          "type": "Vector<User>"
+        }
+      ],
+      "type": "stories.FoundStories"
+    },
+    {
+      "id": 3729546643,
+      "predicate": "geoPointAddress",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "country_iso2",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "type": "flags.0?string"
+        },
+        {
+          "name": "city",
+          "type": "flags.1?string"
+        },
+        {
+          "name": "street",
+          "type": "flags.2?string"
+        }
+      ],
+      "type": "GeoPointAddress"
+    },
+    {
+      "id": 2033461574,
+      "predicate": "starsRevenueStatus",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "withdrawal_enabled",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "current_balance",
+          "type": "long"
+        },
+        {
+          "name": "available_balance",
+          "type": "long"
+        },
+        {
+          "name": "overall_revenue",
+          "type": "long"
+        },
+        {
+          "name": "next_withdrawal_at",
+          "type": "flags.1?int"
+        }
+      ],
+      "type": "StarsRevenueStatus"
+    },
+    {
+      "id": 3375085371,
+      "predicate": "payments.starsRevenueStats",
+      "params": [
+        {
+          "name": "revenue_graph",
+          "type": "StatsGraph"
+        },
+        {
+          "name": "status",
+          "type": "StarsRevenueStatus"
+        },
+        {
+          "name": "usd_rate",
+          "type": "double"
+        }
+      ],
+      "type": "payments.StarsRevenueStats"
+    },
+    {
+      "id": 497778871,
+      "predicate": "payments.starsRevenueWithdrawalUrl",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "type": "payments.StarsRevenueWithdrawalUrl"
+    },
+    {
+      "id": 961445665,
+      "predicate": "payments.starsRevenueAdsAccountUrl",
+      "params": [
+        {
+          "name": "url",
+          "type": "string"
+        }
+      ],
+      "type": "payments.StarsRevenueAdsAccountUrl"
+    },
+    {
+      "id": 543876817,
+      "predicate": "inputStarsTransaction",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "refund",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        }
+      ],
+      "type": "InputStarsTransaction"
     }
   ],
   "methods": [
@@ -29605,7 +29916,7 @@
       "type": "messages.PeerDialogs"
     },
     {
-      "id": 2146678790,
+      "id": 3547514318,
       "method": "messages.saveDraft",
       "params": [
         {
@@ -29639,6 +29950,10 @@
         {
           "name": "media",
           "type": "flags.5?InputMedia"
+        },
+        {
+          "name": "effect",
+          "type": "flags.7?long"
         }
       ],
       "type": "Bool"
@@ -31563,6 +31878,10 @@
           "type": "flags.5?true"
         },
         {
+          "name": "compact",
+          "type": "flags.7?true"
+        },
+        {
           "name": "peer",
           "type": "InputPeer"
         },
@@ -31633,7 +31952,7 @@
       "type": "Bool"
     },
     {
-      "id": 440815626,
+      "id": 1094336115,
       "method": "messages.requestSimpleWebView",
       "params": [
         {
@@ -31647,6 +31966,10 @@
         {
           "name": "from_side_menu",
           "type": "flags.2?true"
+        },
+        {
+          "name": "compact",
+          "type": "flags.7?true"
         },
         {
           "name": "bot",
@@ -31669,7 +31992,7 @@
           "type": "string"
         }
       ],
-      "type": "SimpleWebViewResult"
+      "type": "WebViewResult"
     },
     {
       "id": 172168437,
@@ -31973,7 +32296,7 @@
       "type": "messages.BotApp"
     },
     {
-      "id": 2354723644,
+      "id": 1398901710,
       "method": "messages.requestAppWebView",
       "params": [
         {
@@ -31983,6 +32306,10 @@
         {
           "name": "write_allowed",
           "type": "flags.0?true"
+        },
+        {
+          "name": "compact",
+          "type": "flags.7?true"
         },
         {
           "name": "peer",
@@ -32005,7 +32332,7 @@
           "type": "string"
         }
       ],
-      "type": "AppWebViewResult"
+      "type": "WebViewResult"
     },
     {
       "id": 2415577825,
@@ -34762,7 +35089,7 @@
       "type": "payments.StarsStatus"
     },
     {
-      "id": 1731904249,
+      "id": 2543029594,
       "method": "payments.getStarsTransactions",
       "params": [
         {
@@ -34778,12 +35105,20 @@
           "type": "flags.1?true"
         },
         {
+          "name": "ascending",
+          "type": "flags.2?true"
+        },
+        {
           "name": "peer",
           "type": "InputPeer"
         },
         {
           "name": "offset",
           "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "int"
         }
       ],
       "type": "payments.StarsStatus"
@@ -34821,6 +35156,70 @@
         }
       ],
       "type": "Updates"
+    },
+    {
+      "id": 3642751702,
+      "method": "payments.getStarsRevenueStats",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "dark",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        }
+      ],
+      "type": "payments.StarsRevenueStats"
+    },
+    {
+      "id": 331081907,
+      "method": "payments.getStarsRevenueWithdrawalUrl",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "password",
+          "type": "InputCheckPasswordSRP"
+        }
+      ],
+      "type": "payments.StarsRevenueWithdrawalUrl"
+    },
+    {
+      "id": 3520589765,
+      "method": "payments.getStarsRevenueAdsAccountUrl",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        }
+      ],
+      "type": "payments.StarsRevenueAdsAccountUrl"
+    },
+    {
+      "id": 662973742,
+      "method": "payments.getStarsTransactionsByID",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "id",
+          "type": "Vector<InputStarsTransaction>"
+        }
+      ],
+      "type": "payments.StarsStatus"
     },
     {
       "id": 2418125671,
@@ -36572,6 +36971,33 @@
         }
       ],
       "type": "Bool"
+    },
+    {
+      "id": 1827279210,
+      "method": "stories.searchPosts",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "hashtag",
+          "type": "flags.0?string"
+        },
+        {
+          "name": "area",
+          "type": "flags.1?MediaArea"
+        },
+        {
+          "name": "offset",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "int"
+        }
+      ],
+      "type": "stories.FoundStories"
     },
     {
       "id": 1626764896,
