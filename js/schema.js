@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 183
+var LAYER_NUMBER = 184
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -1849,6 +1849,10 @@ var SCHEMA_GLOBAL = {
           "type": "flags2.14?true"
         },
         {
+          "name": "can_view_stars_revenue",
+          "type": "flags2.15?true"
+        },
+        {
           "name": "id",
           "type": "long"
         },
@@ -3494,6 +3498,37 @@ var SCHEMA_GLOBAL = {
         {
           "name": "peers",
           "type": "Vector<RequestedPeer>"
+        }
+      ],
+      "type": "MessageAction"
+    },
+    {
+      "id": 1102307842,
+      "predicate": "messageActionPaymentRefunded",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "peer",
+          "type": "Peer"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "total_amount",
+          "type": "long"
+        },
+        {
+          "name": "payload",
+          "type": "flags.0?bytes"
+        },
+        {
+          "name": "charge",
+          "type": "PaymentCharge"
         }
       ],
       "type": "MessageAction"
