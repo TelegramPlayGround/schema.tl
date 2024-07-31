@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 184
+var LAYER_NUMBER = 185
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -1082,7 +1082,7 @@ var SCHEMA_GLOBAL = {
       "type": "User"
     },
     {
-      "id": 559694904,
+      "id": 2201046986,
       "predicate": "user",
       "params": [
         {
@@ -1190,6 +1190,10 @@ var SCHEMA_GLOBAL = {
           "type": "flags2.11?true"
         },
         {
+          "name": "bot_has_main_app",
+          "type": "flags2.13?true"
+        },
+        {
           "name": "id",
           "type": "long"
         },
@@ -1256,6 +1260,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "profile_color",
           "type": "flags2.9?PeerColor"
+        },
+        {
+          "name": "bot_active_users",
+          "type": "flags2.12?int"
         }
       ],
       "type": "User"
@@ -3529,6 +3537,41 @@ var SCHEMA_GLOBAL = {
         {
           "name": "charge",
           "type": "PaymentCharge"
+        }
+      ],
+      "type": "MessageAction"
+    },
+    {
+      "id": 1171632161,
+      "predicate": "messageActionGiftStars",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "long"
+        },
+        {
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "crypto_currency",
+          "type": "flags.0?string"
+        },
+        {
+          "name": "crypto_amount",
+          "type": "flags.0?long"
+        },
+        {
+          "name": "transaction_id",
+          "type": "flags.1?string"
         }
       ],
       "type": "MessageAction"
@@ -9372,7 +9415,7 @@ var SCHEMA_GLOBAL = {
       "type": "DocumentAttribute"
     },
     {
-      "id": 3549426114,
+      "id": 389652397,
       "predicate": "documentAttributeVideo",
       "params": [
         {
@@ -9406,6 +9449,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "preload_prefix_size",
           "type": "flags.2?int"
+        },
+        {
+          "name": "video_start_ts",
+          "type": "flags.4?double"
         }
       ],
       "type": "DocumentAttribute"
@@ -10315,6 +10362,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "flags",
           "type": "#"
+        },
+        {
+          "name": "has_preview_medias",
+          "type": "flags.6?true"
         },
         {
           "name": "user_id",
@@ -12876,6 +12927,12 @@ var SCHEMA_GLOBAL = {
     {
       "id": 4226728176,
       "predicate": "topPeerCategoryForwardChats",
+      "params": [],
+      "type": "TopPeerCategory"
+    },
+    {
+      "id": 4255022060,
+      "predicate": "topPeerCategoryBotsApp",
       "params": [],
       "type": "TopPeerCategory"
     },
@@ -21212,12 +21269,12 @@ var SCHEMA_GLOBAL = {
       "type": "InputInvoice"
     },
     {
-      "id": 497236696,
+      "id": 1710230755,
       "predicate": "inputInvoiceStars",
       "params": [
         {
-          "name": "option",
-          "type": "StarsTopupOption"
+          "name": "purpose",
+          "type": "InputStorePaymentPurpose"
         }
       ],
       "type": "InputInvoice"
@@ -21412,12 +21469,31 @@ var SCHEMA_GLOBAL = {
       "type": "InputStorePaymentPurpose"
     },
     {
-      "id": 1326377183,
-      "predicate": "inputStorePaymentStars",
+      "id": 3722252118,
+      "predicate": "inputStorePaymentStarsTopup",
       "params": [
         {
-          "name": "flags",
-          "type": "#"
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "long"
+        }
+      ],
+      "type": "InputStorePaymentPurpose"
+    },
+    {
+      "id": 494149367,
+      "predicate": "inputStorePaymentStarsGift",
+      "params": [
+        {
+          "name": "user_id",
+          "type": "InputUser"
         },
         {
           "name": "stars",
@@ -23310,6 +23386,29 @@ var SCHEMA_GLOBAL = {
         {
           "name": "url",
           "type": "string"
+        }
+      ],
+      "type": "MediaArea"
+    },
+    {
+      "id": 1235637404,
+      "predicate": "mediaAreaWeather",
+      "params": [
+        {
+          "name": "coordinates",
+          "type": "MediaAreaCoordinates"
+        },
+        {
+          "name": "emoji",
+          "type": "string"
+        },
+        {
+          "name": "temperature_c",
+          "type": "double"
+        },
+        {
+          "name": "color",
+          "type": "int"
         }
       ],
       "type": "MediaArea"
@@ -25607,6 +25706,10 @@ var SCHEMA_GLOBAL = {
           "type": "flags.6?true"
         },
         {
+          "name": "gift",
+          "type": "flags.10?true"
+        },
+        {
           "name": "id",
           "type": "string"
         },
@@ -25851,6 +25954,86 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "InputStarsTransaction"
+    },
+    {
+      "id": 1577421297,
+      "predicate": "starsGiftOption",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "extended",
+          "type": "flags.1?true"
+        },
+        {
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "store_product",
+          "type": "flags.0?string"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "long"
+        }
+      ],
+      "type": "StarsGiftOption"
+    },
+    {
+      "id": 428978491,
+      "predicate": "bots.popularAppBots",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "next_offset",
+          "type": "flags.0?string"
+        },
+        {
+          "name": "users",
+          "type": "Vector<User>"
+        }
+      ],
+      "type": "bots.PopularAppBots"
+    },
+    {
+      "id": 602479523,
+      "predicate": "botPreviewMedia",
+      "params": [
+        {
+          "name": "date",
+          "type": "int"
+        },
+        {
+          "name": "media",
+          "type": "MessageMedia"
+        }
+      ],
+      "type": "BotPreviewMedia"
+    },
+    {
+      "id": 212278628,
+      "predicate": "bots.previewInfo",
+      "params": [
+        {
+          "name": "media",
+          "type": "Vector<BotPreviewMedia>"
+        },
+        {
+          "name": "lang_codes",
+          "type": "Vector<string>"
+        }
+      ],
+      "type": "bots.PreviewInfo"
     }
   ],
   "methods": [
@@ -28231,6 +28414,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "channels",
           "type": "flags.15?true"
+        },
+        {
+          "name": "bots_app",
+          "type": "flags.16?true"
         },
         {
           "name": "offset",
@@ -32856,6 +33043,41 @@ var SCHEMA_GLOBAL = {
       "type": "Vector<FactCheck>"
     },
     {
+      "id": 3386908283,
+      "method": "messages.requestMainWebView",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "compact",
+          "type": "flags.7?true"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "start_param",
+          "type": "flags.1?string"
+        },
+        {
+          "name": "theme_params",
+          "type": "flags.0?DataJSON"
+        },
+        {
+          "name": "platform",
+          "type": "string"
+        }
+      ],
+      "type": "WebViewResult"
+    },
+    {
       "id": 3990128682,
       "method": "updates.getState",
       "params": [],
@@ -34858,6 +35080,127 @@ var SCHEMA_GLOBAL = {
       "type": "DataJSON"
     },
     {
+      "id": 3260088722,
+      "method": "bots.getPopularAppBots",
+      "params": [
+        {
+          "name": "offset",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "int"
+        }
+      ],
+      "type": "bots.PopularAppBots"
+    },
+    {
+      "id": 397326170,
+      "method": "bots.addPreviewMedia",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "lang_code",
+          "type": "string"
+        },
+        {
+          "name": "media",
+          "type": "InputMedia"
+        }
+      ],
+      "type": "BotPreviewMedia"
+    },
+    {
+      "id": 2233819247,
+      "method": "bots.editPreviewMedia",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "lang_code",
+          "type": "string"
+        },
+        {
+          "name": "media",
+          "type": "InputMedia"
+        },
+        {
+          "name": "new_media",
+          "type": "InputMedia"
+        }
+      ],
+      "type": "BotPreviewMedia"
+    },
+    {
+      "id": 755054003,
+      "method": "bots.deletePreviewMedia",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "lang_code",
+          "type": "string"
+        },
+        {
+          "name": "media",
+          "type": "Vector<InputMedia>"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": 3056071594,
+      "method": "bots.reorderPreviewMedias",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "lang_code",
+          "type": "string"
+        },
+        {
+          "name": "order",
+          "type": "Vector<InputMedia>"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": 1111143341,
+      "method": "bots.getPreviewInfo",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "lang_code",
+          "type": "string"
+        }
+      ],
+      "type": "bots.PreviewInfo"
+    },
+    {
+      "id": 2728745293,
+      "method": "bots.getPreviewMedias",
+      "params": [
+        {
+          "name": "bot",
+          "type": "InputUser"
+        }
+      ],
+      "type": "Vector<BotPreviewMedia>"
+    },
+    {
       "id": 924093883,
       "method": "payments.getPaymentForm",
       "params": [
@@ -35257,6 +35600,21 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "payments.StarsStatus"
+    },
+    {
+      "id": 3553192904,
+      "method": "payments.getStarsGiftOptions",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "user_id",
+          "type": "flags.0?InputUser"
+        }
+      ],
+      "type": "Vector<StarsGiftOption>"
     },
     {
       "id": 2418125671,
