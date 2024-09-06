@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 186
+var LAYER_NUMBER = 187
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -671,9 +671,13 @@ var SCHEMA_GLOBAL = {
       "type": "InputMedia"
     },
     {
-      "id": 2858819523,
+      "id": 3289396102,
       "predicate": "inputMediaPaidMedia",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
         {
           "name": "stars_amount",
           "type": "long"
@@ -681,6 +685,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "extended_media",
           "type": "Vector<InputMedia>"
+        },
+        {
+          "name": "payload",
+          "type": "flags.0?string"
         }
       ],
       "type": "InputMedia"
@@ -2744,7 +2752,7 @@ var SCHEMA_GLOBAL = {
       "type": "MessageMedia"
     },
     {
-      "id": 3668805040,
+      "id": 2852600811,
       "predicate": "messageMediaGiveaway",
       "params": [
         {
@@ -2777,7 +2785,11 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "months",
-          "type": "int"
+          "type": "flags.4?int"
+        },
+        {
+          "name": "stars",
+          "type": "flags.5?long"
         },
         {
           "name": "until_date",
@@ -2787,7 +2799,7 @@ var SCHEMA_GLOBAL = {
       "type": "MessageMedia"
     },
     {
-      "id": 3331919976,
+      "id": 3467263649,
       "predicate": "messageMediaGiveawayResults",
       "params": [
         {
@@ -2828,7 +2840,11 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "months",
-          "type": "int"
+          "type": "flags.4?int"
+        },
+        {
+          "name": "stars",
+          "type": "flags.5?long"
         },
         {
           "name": "prize_description",
@@ -3487,15 +3503,32 @@ var SCHEMA_GLOBAL = {
       "type": "MessageAction"
     },
     {
-      "id": 858499565,
+      "id": 2819576292,
       "predicate": "messageActionGiveawayLaunch",
-      "params": [],
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "stars",
+          "type": "flags.0?long"
+        }
+      ],
       "type": "MessageAction"
     },
     {
-      "id": 715107781,
+      "id": 2279797077,
       "predicate": "messageActionGiveawayResults",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "stars",
+          "type": "flags.0?true"
+        },
         {
           "name": "winners_count",
           "type": "int"
@@ -3595,6 +3628,37 @@ var SCHEMA_GLOBAL = {
         {
           "name": "transaction_id",
           "type": "flags.1?string"
+        }
+      ],
+      "type": "MessageAction"
+    },
+    {
+      "id": 2953594786,
+      "predicate": "messageActionPrizeStars",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "unclaimed",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "transaction_id",
+          "type": "string"
+        },
+        {
+          "name": "boost_peer",
+          "type": "Peer"
+        },
+        {
+          "name": "giveaway_msg_id",
+          "type": "int"
         }
       ],
       "type": "MessageAction"
@@ -7579,6 +7643,36 @@ var SCHEMA_GLOBAL = {
         {
           "name": "status",
           "type": "StarsRevenueStatus"
+        }
+      ],
+      "type": "Update"
+    },
+    {
+      "id": 675009298,
+      "predicate": "updateBotPurchasedPaidMedia",
+      "params": [
+        {
+          "name": "user_id",
+          "type": "long"
+        },
+        {
+          "name": "payload",
+          "type": "string"
+        },
+        {
+          "name": "qts",
+          "type": "int"
+        }
+      ],
+      "type": "Update"
+    },
+    {
+      "id": 1372224236,
+      "predicate": "updatePaidReactionPrivacy",
+      "params": [
+        {
+          "name": "private",
+          "type": "Bool"
         }
       ],
       "type": "Update"
@@ -16083,6 +16177,21 @@ var SCHEMA_GLOBAL = {
       "type": "ChannelAdminLogEventAction"
     },
     {
+      "id": 1684286899,
+      "predicate": "channelAdminLogEventActionParticipantSubExtend",
+      "params": [
+        {
+          "name": "prev_participant",
+          "type": "ChannelParticipant"
+        },
+        {
+          "name": "new_participant",
+          "type": "ChannelParticipant"
+        }
+      ],
+      "type": "ChannelAdminLogEventAction"
+    },
+    {
       "id": 531458253,
       "predicate": "channelAdminLogEvent",
       "params": [
@@ -16203,6 +16312,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "forums",
           "type": "flags.17?true"
+        },
+        {
+          "name": "sub_extend",
+          "type": "flags.18?true"
         }
       ],
       "type": "ChannelAdminLogEventsFilter"
@@ -21600,6 +21713,65 @@ var SCHEMA_GLOBAL = {
       "type": "InputStorePaymentPurpose"
     },
     {
+      "id": 1964968186,
+      "predicate": "inputStorePaymentStarsGiveaway",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "only_new_subscribers",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "winners_are_visible",
+          "type": "flags.3?true"
+        },
+        {
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "boost_peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "additional_peers",
+          "type": "flags.1?Vector<InputPeer>"
+        },
+        {
+          "name": "countries_iso2",
+          "type": "flags.2?Vector<string>"
+        },
+        {
+          "name": "prize_description",
+          "type": "flags.4?string"
+        },
+        {
+          "name": "random_id",
+          "type": "long"
+        },
+        {
+          "name": "until_date",
+          "type": "int"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "long"
+        },
+        {
+          "name": "users",
+          "type": "int"
+        }
+      ],
+      "type": "InputStorePaymentPurpose"
+    },
+    {
       "id": 1958953753,
       "predicate": "premiumGiftOption",
       "params": [
@@ -23687,7 +23859,7 @@ var SCHEMA_GLOBAL = {
       "type": "payments.GiveawayInfo"
     },
     {
-      "id": 13456752,
+      "id": 3782600303,
       "predicate": "payments.giveawayInfoResults",
       "params": [
         {
@@ -23708,7 +23880,11 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "gift_code_slug",
-          "type": "flags.0?string"
+          "type": "flags.3?string"
+        },
+        {
+          "name": "stars_prize",
+          "type": "flags.4?long"
         },
         {
           "name": "finish_date",
@@ -23720,7 +23896,7 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "activated_count",
-          "type": "int"
+          "type": "flags.2?int"
         }
       ],
       "type": "payments.GiveawayInfo"
@@ -23749,7 +23925,34 @@ var SCHEMA_GLOBAL = {
       "type": "PrepaidGiveaway"
     },
     {
-      "id": 706514033,
+      "id": 2594011104,
+      "predicate": "prepaidStarsGiveaway",
+      "params": [
+        {
+          "name": "id",
+          "type": "long"
+        },
+        {
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "boosts",
+          "type": "int"
+        },
+        {
+          "name": "date",
+          "type": "int"
+        }
+      ],
+      "type": "PrepaidGiveaway"
+    },
+    {
+      "id": 1262359766,
       "predicate": "boost",
       "params": [
         {
@@ -23795,6 +23998,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "multiplier",
           "type": "flags.5?int"
+        },
+        {
+          "name": "stars",
+          "type": "flags.6?long"
         }
       ],
       "type": "Boost"
@@ -25597,9 +25804,17 @@ var SCHEMA_GLOBAL = {
       "type": "ReactionsNotifySettings"
     },
     {
-      "id": 2218324422,
+      "id": 3288297959,
       "predicate": "broadcastRevenueBalances",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "withdrawal_enabled",
+          "type": "flags.0?true"
+        },
         {
           "name": "current_balance",
           "type": "long"
@@ -25781,7 +25996,7 @@ var SCHEMA_GLOBAL = {
       "type": "StarsTopupOption"
     },
     {
-      "id": 1127934763,
+      "id": 4000654037,
       "predicate": "starsTransaction",
       "params": [
         {
@@ -25859,6 +26074,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "subscription_period",
           "type": "flags.12?int"
+        },
+        {
+          "name": "giveaway_post_id",
+          "type": "flags.13?int"
         }
       ],
       "type": "StarsTransaction"
@@ -26238,6 +26457,72 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "MessageReactor"
+    },
+    {
+      "id": 2496562474,
+      "predicate": "starsGiveawayOption",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "extended",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "default",
+          "type": "flags.1?true"
+        },
+        {
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "yearly_boosts",
+          "type": "int"
+        },
+        {
+          "name": "store_product",
+          "type": "flags.2?string"
+        },
+        {
+          "name": "currency",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "long"
+        },
+        {
+          "name": "winners",
+          "type": "Vector<StarsGiveawayWinnersOption>"
+        }
+      ],
+      "type": "StarsGiveawayOption"
+    },
+    {
+      "id": 1411605001,
+      "predicate": "starsGiveawayWinnersOption",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "default",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "users",
+          "type": "int"
+        },
+        {
+          "name": "per_user_stars",
+          "type": "long"
+        }
+      ],
+      "type": "StarsGiveawayWinnersOption"
     }
   ],
   "methods": [
@@ -33294,16 +33579,12 @@ var SCHEMA_GLOBAL = {
       "type": "WebViewResult"
     },
     {
-      "id": 633929278,
+      "id": 2648090235,
       "method": "messages.sendPaidReaction",
       "params": [
         {
           "name": "flags",
           "type": "#"
-        },
-        {
-          "name": "private",
-          "type": "flags.0?true"
         },
         {
           "name": "peer",
@@ -33320,6 +33601,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "random_id",
           "type": "long"
+        },
+        {
+          "name": "private",
+          "type": "flags.0?Bool"
         }
       ],
       "type": "Updates"
@@ -33342,6 +33627,12 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "Bool"
+    },
+    {
+      "id": 1193563562,
+      "method": "messages.getPaidReactionPrivacy",
+      "params": [],
+      "type": "Updates"
     },
     {
       "id": 3990128682,
@@ -35954,6 +36245,12 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "Bool"
+    },
+    {
+      "id": 3172924734,
+      "method": "payments.getStarsGiveawayOptions",
+      "params": [],
+      "type": "Vector<StarsGiveawayOption>"
     },
     {
       "id": 2418125671,
