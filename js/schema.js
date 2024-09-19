@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 187
+var LAYER_NUMBER = 188
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -2501,7 +2501,7 @@ var SCHEMA_GLOBAL = {
       "type": "MessageMedia"
     },
     {
-      "id": 1291114285,
+      "id": 3713469397,
       "predicate": "messageMediaDocument",
       "params": [
         {
@@ -2533,8 +2533,8 @@ var SCHEMA_GLOBAL = {
           "type": "flags.0?Document"
         },
         {
-          "name": "alt_document",
-          "type": "flags.5?Document"
+          "name": "alt_documents",
+          "type": "flags.5?Vector<Document>"
         },
         {
           "name": "ttl_seconds",
@@ -9532,7 +9532,7 @@ var SCHEMA_GLOBAL = {
       "type": "DocumentAttribute"
     },
     {
-      "id": 389652397,
+      "id": 1137015880,
       "predicate": "documentAttributeVideo",
       "params": [
         {
@@ -9570,6 +9570,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "video_start_ts",
           "type": "flags.4?double"
+        },
+        {
+          "name": "video_codec",
+          "type": "flags.5?string"
         }
       ],
       "type": "DocumentAttribute"
@@ -10850,6 +10854,21 @@ var SCHEMA_GLOBAL = {
         {
           "name": "max_quantity",
           "type": "int"
+        }
+      ],
+      "type": "KeyboardButton"
+    },
+    {
+      "id": 1976723854,
+      "predicate": "keyboardButtonCopy",
+      "params": [
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "copy_text",
+          "type": "string"
         }
       ],
       "type": "KeyboardButton"
@@ -35215,9 +35234,21 @@ var SCHEMA_GLOBAL = {
       "type": "Updates"
     },
     {
-      "id": 414170259,
+      "id": 21257589,
       "method": "channels.clickSponsoredMessage",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "media",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "fullscreen",
+          "type": "flags.1?true"
+        },
         {
           "name": "channel",
           "type": "InputChannel"
