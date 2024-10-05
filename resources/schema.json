@@ -3662,6 +3662,41 @@
       "type": "MessageAction"
     },
     {
+      "id": 2612260676,
+      "predicate": "messageActionStarGift",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "name_hidden",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "saved",
+          "type": "flags.2?true"
+        },
+        {
+          "name": "converted",
+          "type": "flags.3?true"
+        },
+        {
+          "name": "gift",
+          "type": "StarGift"
+        },
+        {
+          "name": "message",
+          "type": "flags.1?TextWithEntities"
+        },
+        {
+          "name": "convert_stars",
+          "type": "long"
+        }
+      ],
+      "type": "MessageAction"
+    },
+    {
       "id": 3582593222,
       "predicate": "dialog",
       "params": [
@@ -4419,7 +4454,7 @@
       "type": "ReportReason"
     },
     {
-      "id": 3432609568,
+      "id": 525919081,
       "predicate": "userFull",
       "params": [
         {
@@ -4593,6 +4628,10 @@
         {
           "name": "personal_channel_message",
           "type": "flags2.6?int"
+        },
+        {
+          "name": "stargifts_count",
+          "type": "flags2.8?int"
         }
       ],
       "type": "UserFull"
@@ -14694,6 +14733,21 @@
       "type": "payments.PaymentForm"
     },
     {
+      "id": 3022376929,
+      "predicate": "payments.paymentFormStarGift",
+      "params": [
+        {
+          "name": "form_id",
+          "type": "long"
+        },
+        {
+          "name": "invoice",
+          "type": "Invoice"
+        }
+      ],
+      "type": "payments.PaymentForm"
+    },
+    {
       "id": 3510966403,
       "predicate": "payments.validatedRequestedInfo",
       "params": [
@@ -21499,6 +21553,33 @@
       "type": "InputInvoice"
     },
     {
+      "id": 634962392,
+      "predicate": "inputInvoiceStarGift",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "hide_name",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "user_id",
+          "type": "InputUser"
+        },
+        {
+          "name": "gift_id",
+          "type": "long"
+        },
+        {
+          "name": "message",
+          "type": "flags.1?TextWithEntities"
+        }
+      ],
+      "type": "InputInvoice"
+    },
+    {
       "id": 2932919257,
       "predicate": "payments.exportedInvoice",
       "params": [
@@ -26013,7 +26094,7 @@
       "type": "StarsTopupOption"
     },
     {
-      "id": 4000654037,
+      "id": 178185410,
       "predicate": "starsTransaction",
       "params": [
         {
@@ -26095,6 +26176,10 @@
         {
           "name": "giveaway_post_id",
           "type": "flags.13?int"
+        },
+        {
+          "name": "stargift",
+          "type": "flags.14?StarGift"
         }
       ],
       "type": "StarsTransaction"
@@ -26540,6 +26625,191 @@
         }
       ],
       "type": "StarsGiveawayWinnersOption"
+    },
+    {
+      "id": 2929816814,
+      "predicate": "starGift",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "limited",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "id",
+          "type": "long"
+        },
+        {
+          "name": "sticker",
+          "type": "Document"
+        },
+        {
+          "name": "stars",
+          "type": "long"
+        },
+        {
+          "name": "availability_remains",
+          "type": "flags.0?int"
+        },
+        {
+          "name": "availability_total",
+          "type": "flags.0?int"
+        },
+        {
+          "name": "convert_stars",
+          "type": "long"
+        }
+      ],
+      "type": "StarGift"
+    },
+    {
+      "id": 2743640936,
+      "predicate": "payments.starGiftsNotModified",
+      "params": [],
+      "type": "payments.StarGifts"
+    },
+    {
+      "id": 2417396202,
+      "predicate": "payments.starGifts",
+      "params": [
+        {
+          "name": "hash",
+          "type": "int"
+        },
+        {
+          "name": "gifts",
+          "type": "Vector<StarGift>"
+        }
+      ],
+      "type": "payments.StarGifts"
+    },
+    {
+      "id": 4003764846,
+      "predicate": "userStarGift",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "name_hidden",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "unsaved",
+          "type": "flags.5?true"
+        },
+        {
+          "name": "from_id",
+          "type": "flags.1?long"
+        },
+        {
+          "name": "date",
+          "type": "int"
+        },
+        {
+          "name": "gift",
+          "type": "StarGift"
+        },
+        {
+          "name": "message",
+          "type": "flags.2?TextWithEntities"
+        },
+        {
+          "name": "msg_id",
+          "type": "flags.3?int"
+        },
+        {
+          "name": "convert_stars",
+          "type": "flags.4?long"
+        }
+      ],
+      "type": "UserStarGift"
+    },
+    {
+      "id": 1801827607,
+      "predicate": "payments.userStarGifts",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "count",
+          "type": "int"
+        },
+        {
+          "name": "gifts",
+          "type": "Vector<UserStarGift>"
+        },
+        {
+          "name": "next_offset",
+          "type": "flags.0?string"
+        },
+        {
+          "name": "users",
+          "type": "Vector<User>"
+        }
+      ],
+      "type": "payments.UserStarGifts"
+    },
+    {
+      "id": 2030298073,
+      "predicate": "messageReportOption",
+      "params": [
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "option",
+          "type": "bytes"
+        }
+      ],
+      "type": "MessageReportOption"
+    },
+    {
+      "id": 4041531574,
+      "predicate": "reportResultChooseOption",
+      "params": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": "Vector<MessageReportOption>"
+        }
+      ],
+      "type": "ReportResult"
+    },
+    {
+      "id": 1862904881,
+      "predicate": "reportResultAddComment",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "optional",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "option",
+          "type": "bytes"
+        }
+      ],
+      "type": "ReportResult"
+    },
+    {
+      "id": 2377333835,
+      "predicate": "reportResultReported",
+      "params": [],
+      "type": "ReportResult"
     }
   ],
   "methods": [
@@ -29649,7 +29919,7 @@
       "type": "messages.PeerSettings"
     },
     {
-      "id": 2303961934,
+      "id": 4235767707,
       "method": "messages.report",
       "params": [
         {
@@ -29661,15 +29931,15 @@
           "type": "Vector<int>"
         },
         {
-          "name": "reason",
-          "type": "ReportReason"
+          "name": "option",
+          "type": "bytes"
         },
         {
           "name": "message",
           "type": "string"
         }
       ],
-      "type": "Bool"
+      "type": "ReportResult"
     },
     {
       "id": 1240027791,
@@ -36102,13 +36372,9 @@
       "type": "payments.StarsStatus"
     },
     {
-      "id": 45839133,
+      "id": 2040056084,
       "method": "payments.sendStarsForm",
       "params": [
-        {
-          "name": "flags",
-          "type": "#"
-        },
         {
           "name": "form_id",
           "type": "long"
@@ -36280,6 +36546,74 @@
       "method": "payments.getStarsGiveawayOptions",
       "params": [],
       "type": "Vector<StarsGiveawayOption>"
+    },
+    {
+      "id": 3293984144,
+      "method": "payments.getStarGifts",
+      "params": [
+        {
+          "name": "hash",
+          "type": "int"
+        }
+      ],
+      "type": "payments.StarGifts"
+    },
+    {
+      "id": 1584580577,
+      "method": "payments.getUserStarGifts",
+      "params": [
+        {
+          "name": "user_id",
+          "type": "InputUser"
+        },
+        {
+          "name": "offset",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "int"
+        }
+      ],
+      "type": "payments.UserStarGifts"
+    },
+    {
+      "id": 2276257934,
+      "method": "payments.saveStarGift",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "unsave",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "user_id",
+          "type": "InputUser"
+        },
+        {
+          "name": "msg_id",
+          "type": "int"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": 69328935,
+      "method": "payments.convertStarGift",
+      "params": [
+        {
+          "name": "user_id",
+          "type": "InputUser"
+        },
+        {
+          "name": "msg_id",
+          "type": "int"
+        }
+      ],
+      "type": "Bool"
     },
     {
       "id": 2418125671,
@@ -37865,7 +38199,7 @@
       "type": "ExportedStoryLink"
     },
     {
-      "id": 421788300,
+      "id": 433646405,
       "method": "stories.report",
       "params": [
         {
@@ -37877,15 +38211,15 @@
           "type": "Vector<int>"
         },
         {
-          "name": "reason",
-          "type": "ReportReason"
+          "name": "option",
+          "type": "bytes"
         },
         {
           "name": "message",
           "type": "string"
         }
       ],
-      "type": "Bool"
+      "type": "ReportResult"
     },
     {
       "id": 1471926630,
