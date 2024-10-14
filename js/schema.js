@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 189
+var LAYER_NUMBER = 190
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -3326,7 +3326,7 @@ var SCHEMA_GLOBAL = {
       "type": "MessageAction"
     },
     {
-      "id": 3359468268,
+      "id": 1818391802,
       "predicate": "messageActionGiftPremium",
       "params": [
         {
@@ -3352,6 +3352,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "crypto_amount",
           "type": "flags.0?long"
+        },
+        {
+          "name": "message",
+          "type": "flags.1?TextWithEntities"
         }
       ],
       "type": "MessageAction"
@@ -3456,7 +3460,7 @@ var SCHEMA_GLOBAL = {
       "type": "MessageAction"
     },
     {
-      "id": 1737240073,
+      "id": 1456486804,
       "predicate": "messageActionGiftCode",
       "params": [
         {
@@ -3498,6 +3502,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "crypto_amount",
           "type": "flags.3?long"
+        },
+        {
+          "name": "message",
+          "type": "flags.4?TextWithEntities"
         }
       ],
       "type": "MessageAction"
@@ -21693,7 +21701,7 @@ var SCHEMA_GLOBAL = {
       "type": "InputStorePaymentPurpose"
     },
     {
-      "id": 2743099199,
+      "id": 4219011987,
       "predicate": "inputStorePaymentPremiumGiftCode",
       "params": [
         {
@@ -21715,6 +21723,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "amount",
           "type": "long"
+        },
+        {
+          "name": "message",
+          "type": "flags.1?TextWithEntities"
         }
       ],
       "type": "InputStorePaymentPurpose"
