@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 190
+var LAYER_NUMBER = 192
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -2256,6 +2256,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "offline",
           "type": "flags2.1?true"
+        },
+        {
+          "name": "video_processing_pending",
+          "type": "flags2.4?true"
         },
         {
           "name": "id",
@@ -4532,6 +4536,10 @@ var SCHEMA_GLOBAL = {
           "type": "flags2.7?true"
         },
         {
+          "name": "can_view_revenue",
+          "type": "flags2.9?true"
+        },
+        {
           "name": "id",
           "type": "long"
         },
@@ -6403,9 +6411,13 @@ var SCHEMA_GLOBAL = {
       "type": "Update"
     },
     {
-      "id": 2424728814,
+      "id": 4071037315,
       "predicate": "updateDeleteScheduledMessages",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
         {
           "name": "peer",
           "type": "Peer"
@@ -6413,6 +6425,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "messages",
           "type": "Vector<int>"
+        },
+        {
+          "name": "sent_messages",
+          "type": "flags.0?Vector<int>"
         }
       ],
       "type": "Update"
@@ -26077,6 +26093,12 @@ var SCHEMA_GLOBAL = {
       "type": "StarsTransactionPeer"
     },
     {
+      "id": 4184308397,
+      "predicate": "starsTransactionPeerAPI",
+      "params": [],
+      "type": "StarsTransactionPeer"
+    },
+    {
       "id": 198776256,
       "predicate": "starsTopupOption",
       "params": [
@@ -26108,7 +26130,7 @@ var SCHEMA_GLOBAL = {
       "type": "StarsTopupOption"
     },
     {
-      "id": 178185410,
+      "id": 903148150,
       "predicate": "starsTransaction",
       "params": [
         {
@@ -26194,6 +26216,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "stargift",
           "type": "flags.14?StarGift"
+        },
+        {
+          "name": "floodskip_number",
+          "type": "flags.15?int"
         }
       ],
       "type": "StarsTransaction"
@@ -26641,7 +26667,7 @@ var SCHEMA_GLOBAL = {
       "type": "StarsGiveawayWinnersOption"
     },
     {
-      "id": 2929816814,
+      "id": 1237678029,
       "predicate": "starGift",
       "params": [
         {
@@ -26651,6 +26677,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "limited",
           "type": "flags.0?true"
+        },
+        {
+          "name": "sold_out",
+          "type": "flags.1?true"
         },
         {
           "name": "id",
@@ -26675,6 +26705,14 @@ var SCHEMA_GLOBAL = {
         {
           "name": "convert_stars",
           "type": "long"
+        },
+        {
+          "name": "first_sale_date",
+          "type": "flags.1?int"
+        },
+        {
+          "name": "last_sale_date",
+          "type": "flags.1?int"
         }
       ],
       "type": "StarGift"
@@ -29722,6 +29760,10 @@ var SCHEMA_GLOBAL = {
           "type": "flags.16?true"
         },
         {
+          "name": "allow_paid_floodskip",
+          "type": "flags.19?true"
+        },
+        {
           "name": "peer",
           "type": "InputPeer"
         },
@@ -29795,6 +29837,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "invert_media",
           "type": "flags.16?true"
+        },
+        {
+          "name": "allow_paid_floodskip",
+          "type": "flags.19?true"
         },
         {
           "name": "peer",
@@ -29874,6 +29920,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "noforwards",
           "type": "flags.14?true"
+        },
+        {
+          "name": "allow_paid_floodskip",
+          "type": "flags.19?true"
         },
         {
           "name": "from_peer",
@@ -31519,6 +31569,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "invert_media",
           "type": "flags.16?true"
+        },
+        {
+          "name": "allow_paid_floodskip",
+          "type": "flags.19?true"
         },
         {
           "name": "peer",
@@ -33936,6 +33990,78 @@ var SCHEMA_GLOBAL = {
       "type": "Updates"
     },
     {
+      "id": 1731909873,
+      "method": "messages.viewSponsoredMessage",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "random_id",
+          "type": "bytes"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": 252261477,
+      "method": "messages.clickSponsoredMessage",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "media",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "fullscreen",
+          "type": "flags.1?true"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "random_id",
+          "type": "bytes"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": 452189112,
+      "method": "messages.reportSponsoredMessage",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "random_id",
+          "type": "bytes"
+        },
+        {
+          "name": "option",
+          "type": "bytes"
+        }
+      ],
+      "type": "channels.SponsoredMessageReportResult"
+    },
+    {
+      "id": 2614293561,
+      "method": "messages.getSponsoredMessages",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        }
+      ],
+      "type": "messages.SponsoredMessages"
+    },
+    {
       "id": 3990128682,
       "method": "updates.getState",
       "params": [],
@@ -35152,32 +35278,6 @@ var SCHEMA_GLOBAL = {
       "type": "Updates"
     },
     {
-      "id": 3199130516,
-      "method": "channels.viewSponsoredMessage",
-      "params": [
-        {
-          "name": "channel",
-          "type": "InputChannel"
-        },
-        {
-          "name": "random_id",
-          "type": "bytes"
-        }
-      ],
-      "type": "Bool"
-    },
-    {
-      "id": 3961589695,
-      "method": "channels.getSponsoredMessages",
-      "params": [
-        {
-          "name": "channel",
-          "type": "InputChannel"
-        }
-      ],
-      "type": "messages.SponsoredMessages"
-    },
-    {
       "id": 231174382,
       "method": "channels.getSendAs",
       "params": [
@@ -35516,33 +35616,6 @@ var SCHEMA_GLOBAL = {
       "type": "Updates"
     },
     {
-      "id": 21257589,
-      "method": "channels.clickSponsoredMessage",
-      "params": [
-        {
-          "name": "flags",
-          "type": "#"
-        },
-        {
-          "name": "media",
-          "type": "flags.0?true"
-        },
-        {
-          "name": "fullscreen",
-          "type": "flags.1?true"
-        },
-        {
-          "name": "channel",
-          "type": "InputChannel"
-        },
-        {
-          "name": "random_id",
-          "type": "bytes"
-        }
-      ],
-      "type": "Bool"
-    },
-    {
       "id": 3635033713,
       "method": "channels.updateColor",
       "params": [
@@ -35643,25 +35716,6 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "Bool"
-    },
-    {
-      "id": 2945447609,
-      "method": "channels.reportSponsoredMessage",
-      "params": [
-        {
-          "name": "channel",
-          "type": "InputChannel"
-        },
-        {
-          "name": "random_id",
-          "type": "bytes"
-        },
-        {
-          "name": "option",
-          "type": "bytes"
-        }
-      ],
-      "type": "channels.SponsoredMessageReportResult"
     },
     {
       "id": 2598966553,
@@ -37662,7 +37716,7 @@ var SCHEMA_GLOBAL = {
       "type": "stats.PublicForwards"
     },
     {
-      "id": 1977595505,
+      "id": 4152946201,
       "method": "stats.getBroadcastRevenueStats",
       "params": [
         {
@@ -37674,19 +37728,19 @@ var SCHEMA_GLOBAL = {
           "type": "flags.0?true"
         },
         {
-          "name": "channel",
-          "type": "InputChannel"
+          "name": "peer",
+          "type": "InputPeer"
         }
       ],
       "type": "stats.BroadcastRevenueStats"
     },
     {
-      "id": 711323507,
+      "id": 2650077869,
       "method": "stats.getBroadcastRevenueWithdrawalUrl",
       "params": [
         {
-          "name": "channel",
-          "type": "InputChannel"
+          "name": "peer",
+          "type": "InputPeer"
         },
         {
           "name": "password",
@@ -37696,12 +37750,12 @@ var SCHEMA_GLOBAL = {
       "type": "stats.BroadcastRevenueWithdrawalUrl"
     },
     {
-      "id": 6891535,
+      "id": 1889078125,
       "method": "stats.getBroadcastRevenueTransactions",
       "params": [
         {
-          "name": "channel",
-          "type": "InputChannel"
+          "name": "peer",
+          "type": "InputPeer"
         },
         {
           "name": "offset",
@@ -38381,7 +38435,7 @@ var SCHEMA_GLOBAL = {
       "type": "Bool"
     },
     {
-      "id": 1827279210,
+      "id": 3514894599,
       "method": "stories.searchPosts",
       "params": [
         {
@@ -38395,6 +38449,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "area",
           "type": "flags.1?MediaArea"
+        },
+        {
+          "name": "peer",
+          "type": "flags.2?InputPeer"
         },
         {
           "name": "offset",
