@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 193
+var LAYER_NUMBER = 195
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -3023,7 +3023,7 @@ var SCHEMA_GLOBAL = {
       "type": "MessageAction"
     },
     {
-      "id": 2402399015,
+      "id": 4288679116,
       "predicate": "messageActionPaymentSentMe",
       "params": [
         {
@@ -3061,12 +3061,16 @@ var SCHEMA_GLOBAL = {
         {
           "name": "charge",
           "type": "PaymentCharge"
+        },
+        {
+          "name": "subscription_until_date",
+          "type": "flags.4?int"
         }
       ],
       "type": "MessageAction"
     },
     {
-      "id": 2518040406,
+      "id": 3324293486,
       "predicate": "messageActionPaymentSent",
       "params": [
         {
@@ -3092,6 +3096,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "invoice_slug",
           "type": "flags.0?string"
+        },
+        {
+          "name": "subscription_until_date",
+          "type": "flags.4?int"
         }
       ],
       "type": "MessageAction"
@@ -4468,7 +4476,7 @@ var SCHEMA_GLOBAL = {
       "type": "ReportReason"
     },
     {
-      "id": 525919081,
+      "id": 2543657846,
       "predicate": "userFull",
       "params": [
         {
@@ -4654,6 +4662,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "stargifts_count",
           "type": "flags2.8?int"
+        },
+        {
+          "name": "starref_program",
+          "type": "flags2.11?StarRefProgram"
         }
       ],
       "type": "UserFull"
@@ -7650,12 +7662,12 @@ var SCHEMA_GLOBAL = {
       "type": "Update"
     },
     {
-      "id": 263737752,
+      "id": 1317053305,
       "predicate": "updateStarsBalance",
       "params": [
         {
           "name": "balance",
-          "type": "long"
+          "type": "StarsAmount"
         }
       ],
       "type": "Update"
@@ -7740,33 +7752,6 @@ var SCHEMA_GLOBAL = {
         {
           "name": "private",
           "type": "Bool"
-        }
-      ],
-      "type": "Update"
-    },
-    {
-      "id": 756270830,
-      "predicate": "updateBotSubscriptionExpire",
-      "params": [
-        {
-          "name": "user_id",
-          "type": "long"
-        },
-        {
-          "name": "payload",
-          "type": "string"
-        },
-        {
-          "name": "invoice_slug",
-          "type": "string"
-        },
-        {
-          "name": "until_date",
-          "type": "int"
-        },
-        {
-          "name": "qts",
-          "type": "int"
         }
       ],
       "type": "Update"
@@ -26209,7 +26194,7 @@ var SCHEMA_GLOBAL = {
       "type": "StarsTopupOption"
     },
     {
-      "id": 903148150,
+      "id": 1692387622,
       "predicate": "starsTransaction",
       "params": [
         {
@@ -26242,7 +26227,7 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "stars",
-          "type": "long"
+          "type": "StarsAmount"
         },
         {
           "name": "date",
@@ -26299,12 +26284,24 @@ var SCHEMA_GLOBAL = {
         {
           "name": "floodskip_number",
           "type": "flags.15?int"
+        },
+        {
+          "name": "starref_commission_permille",
+          "type": "flags.16?int"
+        },
+        {
+          "name": "starref_peer",
+          "type": "flags.17?Peer"
+        },
+        {
+          "name": "starref_amount",
+          "type": "flags.17?StarsAmount"
         }
       ],
       "type": "StarsTransaction"
     },
     {
-      "id": 3153736044,
+      "id": 1822222573,
       "predicate": "payments.starsStatus",
       "params": [
         {
@@ -26313,7 +26310,7 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "balance",
-          "type": "long"
+          "type": "StarsAmount"
         },
         {
           "name": "subscriptions",
@@ -26420,7 +26417,7 @@ var SCHEMA_GLOBAL = {
       "type": "GeoPointAddress"
     },
     {
-      "id": 2033461574,
+      "id": 4273886353,
       "predicate": "starsRevenueStatus",
       "params": [
         {
@@ -26433,15 +26430,15 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "current_balance",
-          "type": "long"
+          "type": "StarsAmount"
         },
         {
           "name": "available_balance",
-          "type": "long"
+          "type": "StarsAmount"
         },
         {
           "name": "overall_revenue",
-          "type": "long"
+          "type": "StarsAmount"
         },
         {
           "name": "next_withdrawal_at",
@@ -27034,6 +27031,179 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "BotAppSettings"
+    },
+    {
+      "id": 3708577522,
+      "predicate": "starRefProgram",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "bot_id",
+          "type": "long"
+        },
+        {
+          "name": "commission_permille",
+          "type": "int"
+        },
+        {
+          "name": "duration_months",
+          "type": "flags.0?int"
+        },
+        {
+          "name": "end_date",
+          "type": "flags.1?int"
+        },
+        {
+          "name": "daily_revenue_per_user",
+          "type": "flags.2?StarsAmount"
+        }
+      ],
+      "type": "StarRefProgram"
+    },
+    {
+      "id": 429997937,
+      "predicate": "connectedBotStarRef",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "revoked",
+          "type": "flags.1?true"
+        },
+        {
+          "name": "url",
+          "type": "string"
+        },
+        {
+          "name": "date",
+          "type": "int"
+        },
+        {
+          "name": "bot_id",
+          "type": "long"
+        },
+        {
+          "name": "commission_permille",
+          "type": "int"
+        },
+        {
+          "name": "duration_months",
+          "type": "flags.0?int"
+        },
+        {
+          "name": "participants",
+          "type": "long"
+        },
+        {
+          "name": "revenue",
+          "type": "long"
+        }
+      ],
+      "type": "ConnectedBotStarRef"
+    },
+    {
+      "id": 2564155933,
+      "predicate": "payments.connectedStarRefBots",
+      "params": [
+        {
+          "name": "count",
+          "type": "int"
+        },
+        {
+          "name": "connected_bots",
+          "type": "Vector<ConnectedBotStarRef>"
+        },
+        {
+          "name": "users",
+          "type": "Vector<User>"
+        }
+      ],
+      "type": "payments.ConnectedStarRefBots"
+    },
+    {
+      "id": 3033913433,
+      "predicate": "payments.suggestedStarRefBots",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "count",
+          "type": "int"
+        },
+        {
+          "name": "suggested_bots",
+          "type": "Vector<StarRefProgram>"
+        },
+        {
+          "name": "users",
+          "type": "Vector<User>"
+        },
+        {
+          "name": "next_offset",
+          "type": "flags.0?string"
+        }
+      ],
+      "type": "payments.SuggestedStarRefBots"
+    },
+    {
+      "id": 3149313187,
+      "predicate": "starsAmount",
+      "params": [
+        {
+          "name": "amount",
+          "type": "long"
+        },
+        {
+          "name": "nanos",
+          "type": "int"
+        }
+      ],
+      "type": "StarsAmount"
+    },
+    {
+      "id": 1611711796,
+      "predicate": "messages.foundStickersNotModified",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "next_offset",
+          "type": "flags.0?int"
+        }
+      ],
+      "type": "messages.FoundStickers"
+    },
+    {
+      "id": 2194268816,
+      "predicate": "messages.foundStickers",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "next_offset",
+          "type": "flags.0?int"
+        },
+        {
+          "name": "hash",
+          "type": "long"
+        },
+        {
+          "name": "stickers",
+          "type": "Vector<Document>"
+        }
+      ],
+      "type": "messages.FoundStickers"
     }
   ],
   "methods": [
@@ -29365,12 +29535,20 @@ var SCHEMA_GLOBAL = {
       "type": "contacts.Found"
     },
     {
-      "id": 4181511075,
+      "id": 1918565308,
       "method": "contacts.resolveUsername",
       "params": [
         {
+          "name": "flags",
+          "type": "#"
+        },
+        {
           "name": "username",
           "type": "string"
+        },
+        {
+          "name": "referer",
+          "type": "flags.0?string"
         }
       ],
       "type": "contacts.ResolvedPeer"
@@ -34288,6 +34466,45 @@ var SCHEMA_GLOBAL = {
       "type": "messages.PreparedInlineMessage"
     },
     {
+      "id": 699516522,
+      "method": "messages.searchStickers",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "emojis",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "q",
+          "type": "string"
+        },
+        {
+          "name": "emoticon",
+          "type": "string"
+        },
+        {
+          "name": "lang_code",
+          "type": "Vector<string>"
+        },
+        {
+          "name": "offset",
+          "type": "int"
+        },
+        {
+          "name": "limit",
+          "type": "int"
+        },
+        {
+          "name": "hash",
+          "type": "long"
+        }
+      ],
+      "type": "messages.FoundStickers"
+    },
+    {
       "id": 3990128682,
       "method": "updates.getState",
       "params": [],
@@ -36408,6 +36625,35 @@ var SCHEMA_GLOBAL = {
       "type": "Bool"
     },
     {
+      "id": 2960203139,
+      "method": "bots.getAdminedBots",
+      "params": [],
+      "type": "Vector<User>"
+    },
+    {
+      "id": 2005621427,
+      "method": "bots.updateStarRefProgram",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "bot",
+          "type": "InputUser"
+        },
+        {
+          "name": "commission_permille",
+          "type": "int"
+        },
+        {
+          "name": "duration_months",
+          "type": "flags.0?int"
+        }
+      ],
+      "type": "StarRefProgram"
+    },
+    {
       "id": 924093883,
       "method": "payments.getPaymentForm",
       "params": [
@@ -36959,7 +37205,7 @@ var SCHEMA_GLOBAL = {
       "type": "Bool"
     },
     {
-      "id": 1475996902,
+      "id": 1845102114,
       "method": "payments.botCancelStarsSubscription",
       "params": [
         {
@@ -36975,15 +37221,122 @@ var SCHEMA_GLOBAL = {
           "type": "InputUser"
         },
         {
-          "name": "invoice_slug",
-          "type": "flags.1?string"
-        },
-        {
           "name": "charge_id",
-          "type": "flags.2?string"
+          "type": "string"
         }
       ],
       "type": "Bool"
+    },
+    {
+      "id": 1483318611,
+      "method": "payments.getConnectedStarRefBots",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "offset_date",
+          "type": "flags.2?int"
+        },
+        {
+          "name": "offset_link",
+          "type": "flags.2?string"
+        },
+        {
+          "name": "limit",
+          "type": "int"
+        }
+      ],
+      "type": "payments.ConnectedStarRefBots"
+    },
+    {
+      "id": 3084490992,
+      "method": "payments.getConnectedStarRefBot",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "bot",
+          "type": "InputUser"
+        }
+      ],
+      "type": "payments.ConnectedStarRefBots"
+    },
+    {
+      "id": 225134839,
+      "method": "payments.getSuggestedStarRefBots",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "order_by_revenue",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "order_by_date",
+          "type": "flags.1?true"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "offset",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "int"
+        }
+      ],
+      "type": "payments.SuggestedStarRefBots"
+    },
+    {
+      "id": 2127901834,
+      "method": "payments.connectStarRefBot",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "bot",
+          "type": "InputUser"
+        }
+      ],
+      "type": "payments.ConnectedStarRefBots"
+    },
+    {
+      "id": 3841762467,
+      "method": "payments.editConnectedStarRefBot",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "revoked",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "link",
+          "type": "string"
+        }
+      ],
+      "type": "payments.ConnectedStarRefBots"
     },
     {
       "id": 2418125671,
