@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 195
+var LAYER_NUMBER = 196
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -1101,7 +1101,7 @@ var SCHEMA_GLOBAL = {
       "type": "User"
     },
     {
-      "id": 2201046986,
+      "id": 1262928766,
       "predicate": "user",
       "params": [
         {
@@ -1283,6 +1283,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "bot_active_users",
           "type": "flags2.12?int"
+        },
+        {
+          "name": "bot_verification_icon",
+          "type": "flags2.14?long"
         }
       ],
       "type": "User"
@@ -1495,7 +1499,7 @@ var SCHEMA_GLOBAL = {
       "type": "Chat"
     },
     {
-      "id": 4265900221,
+      "id": 3758725303,
       "predicate": "channel",
       "params": [
         {
@@ -1673,6 +1677,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "subscription_until_date",
           "type": "flags2.11?int"
+        },
+        {
+          "name": "bot_verification_icon",
+          "type": "flags2.13?long"
         }
       ],
       "type": "Chat"
@@ -1804,7 +1812,7 @@ var SCHEMA_GLOBAL = {
       "type": "ChatFull"
     },
     {
-      "id": 3148559501,
+      "id": 2683549784,
       "predicate": "channelFull",
       "params": [
         {
@@ -2054,6 +2062,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "emojiset",
           "type": "flags2.10?StickerSet"
+        },
+        {
+          "name": "bot_verification",
+          "type": "flags2.17?BotVerification"
         }
       ],
       "type": "ChatFull"
@@ -2198,7 +2210,7 @@ var SCHEMA_GLOBAL = {
       "type": "Message"
     },
     {
-      "id": 2486456898,
+      "id": 2533211113,
       "predicate": "message",
       "params": [
         {
@@ -2364,12 +2376,16 @@ var SCHEMA_GLOBAL = {
         {
           "name": "factcheck",
           "type": "flags2.3?FactCheck"
+        },
+        {
+          "name": "report_delivery_until_date",
+          "type": "flags2.5?int"
         }
       ],
       "type": "Message"
     },
     {
-      "id": 721967202,
+      "id": 3553789248,
       "predicate": "messageService",
       "params": [
         {
@@ -2387,6 +2403,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "media_unread",
           "type": "flags.5?true"
+        },
+        {
+          "name": "reactions_are_possible",
+          "type": "flags.9?true"
         },
         {
           "name": "silent",
@@ -2423,6 +2443,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "action",
           "type": "MessageAction"
+        },
+        {
+          "name": "reactions",
+          "type": "flags.20?MessageReactions"
         },
         {
           "name": "ttl_period",
@@ -3684,7 +3708,7 @@ var SCHEMA_GLOBAL = {
       "type": "MessageAction"
     },
     {
-      "id": 139818551,
+      "id": 3639931047,
       "predicate": "messageActionStarGift",
       "params": [
         {
@@ -3704,6 +3728,18 @@ var SCHEMA_GLOBAL = {
           "type": "flags.3?true"
         },
         {
+          "name": "upgraded",
+          "type": "flags.5?true"
+        },
+        {
+          "name": "refunded",
+          "type": "flags.9?true"
+        },
+        {
+          "name": "can_upgrade",
+          "type": "flags.10?true"
+        },
+        {
           "name": "gift",
           "type": "StarGift"
         },
@@ -3713,6 +3749,53 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "convert_stars",
+          "type": "flags.4?long"
+        },
+        {
+          "name": "upgrade_msg_id",
+          "type": "flags.5?int"
+        },
+        {
+          "name": "upgrade_stars",
+          "type": "flags.8?long"
+        }
+      ],
+      "type": "MessageAction"
+    },
+    {
+      "id": 638024601,
+      "predicate": "messageActionStarGiftUnique",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "upgrade",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "transferred",
+          "type": "flags.1?true"
+        },
+        {
+          "name": "saved",
+          "type": "flags.2?true"
+        },
+        {
+          "name": "refunded",
+          "type": "flags.5?true"
+        },
+        {
+          "name": "gift",
+          "type": "StarGift"
+        },
+        {
+          "name": "can_export_at",
+          "type": "flags.3?int"
+        },
+        {
+          "name": "transfer_stars",
           "type": "flags.4?long"
         }
       ],
@@ -4476,7 +4559,7 @@ var SCHEMA_GLOBAL = {
       "type": "ReportReason"
     },
     {
-      "id": 2543657846,
+      "id": 1301765052,
       "predicate": "userFull",
       "params": [
         {
@@ -4666,6 +4749,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "starref_program",
           "type": "flags2.11?StarRefProgram"
+        },
+        {
+          "name": "bot_verification",
+          "type": "flags2.12?BotVerification"
         }
       ],
       "type": "UserFull"
@@ -6767,12 +6854,16 @@ var SCHEMA_GLOBAL = {
       "type": "Update"
     },
     {
-      "id": 347227392,
+      "id": 2547401537,
       "predicate": "updateGroupCall",
       "params": [
         {
+          "name": "flags",
+          "type": "#"
+        },
+        {
           "name": "chat_id",
-          "type": "long"
+          "type": "flags.0?long"
         },
         {
           "name": "call",
@@ -10306,7 +10397,7 @@ var SCHEMA_GLOBAL = {
       "type": "ChatInvite"
     },
     {
-      "id": 4268046493,
+      "id": 1553807106,
       "predicate": "chatInvite",
       "params": [
         {
@@ -10380,6 +10471,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "subscription_form_id",
           "type": "flags.12?long"
+        },
+        {
+          "name": "bot_verification",
+          "type": "flags.13?BotVerification"
         }
       ],
       "type": "ChatInvite"
@@ -10612,7 +10707,7 @@ var SCHEMA_GLOBAL = {
       "type": "BotCommand"
     },
     {
-      "id": 912290611,
+      "id": 1300890265,
       "predicate": "botInfo",
       "params": [
         {
@@ -10654,6 +10749,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "app_settings",
           "type": "flags.8?BotAppSettings"
+        },
+        {
+          "name": "verifier_settings",
+          "type": "flags.9?BotVerifierSettings"
         }
       ],
       "type": "BotInfo"
@@ -14347,6 +14446,17 @@ var SCHEMA_GLOBAL = {
       "type": "PhoneCallDiscardReason"
     },
     {
+      "id": 2950871097,
+      "predicate": "phoneCallDiscardReasonAllowGroupCall",
+      "params": [
+        {
+          "name": "encrypted_key",
+          "type": "bytes"
+        }
+      ],
+      "type": "PhoneCallDiscardReason"
+    },
+    {
       "id": 2104790276,
       "predicate": "dataJSON",
       "params": [
@@ -15155,7 +15265,7 @@ var SCHEMA_GLOBAL = {
       "type": "PhoneCall"
     },
     {
-      "id": 3307368215,
+      "id": 4006881368,
       "predicate": "phoneCallWaiting",
       "params": [
         {
@@ -15193,12 +15303,16 @@ var SCHEMA_GLOBAL = {
         {
           "name": "receive_date",
           "type": "flags.0?int"
+        },
+        {
+          "name": "conference_call",
+          "type": "flags.8?InputGroupCall"
         }
       ],
       "type": "PhoneCall"
     },
     {
-      "id": 347139340,
+      "id": 1161174115,
       "predicate": "phoneCallRequested",
       "params": [
         {
@@ -15236,12 +15350,16 @@ var SCHEMA_GLOBAL = {
         {
           "name": "protocol",
           "type": "PhoneCallProtocol"
+        },
+        {
+          "name": "conference_call",
+          "type": "flags.8?InputGroupCall"
         }
       ],
       "type": "PhoneCall"
     },
     {
-      "id": 912311057,
+      "id": 587035009,
       "predicate": "phoneCallAccepted",
       "params": [
         {
@@ -15279,12 +15397,16 @@ var SCHEMA_GLOBAL = {
         {
           "name": "protocol",
           "type": "PhoneCallProtocol"
+        },
+        {
+          "name": "conference_call",
+          "type": "flags.8?InputGroupCall"
         }
       ],
       "type": "PhoneCall"
     },
     {
-      "id": 810769141,
+      "id": 1000707084,
       "predicate": "phoneCall",
       "params": [
         {
@@ -15342,12 +15464,16 @@ var SCHEMA_GLOBAL = {
         {
           "name": "custom_parameters",
           "type": "flags.7?DataJSON"
+        },
+        {
+          "name": "conference_call",
+          "type": "flags.8?InputGroupCall"
         }
       ],
       "type": "PhoneCall"
     },
     {
-      "id": 1355435489,
+      "id": 4191311107,
       "predicate": "phoneCallDiscarded",
       "params": [
         {
@@ -15377,6 +15503,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "duration",
           "type": "flags.1?int"
+        },
+        {
+          "name": "conference_call",
+          "type": "flags.8?InputGroupCall"
         }
       ],
       "type": "PhoneCall"
@@ -19195,7 +19325,7 @@ var SCHEMA_GLOBAL = {
       "type": "payments.BankCardData"
     },
     {
-      "id": 1605718587,
+      "id": 2856789585,
       "predicate": "dialogFilter",
       "params": [
         {
@@ -19235,12 +19365,16 @@ var SCHEMA_GLOBAL = {
           "type": "flags.13?true"
         },
         {
+          "name": "title_noanimate",
+          "type": "flags.28?true"
+        },
+        {
           "name": "id",
           "type": "int"
         },
         {
           "name": "title",
-          "type": "string"
+          "type": "TextWithEntities"
         },
         {
           "name": "emoticon",
@@ -19272,7 +19406,7 @@ var SCHEMA_GLOBAL = {
       "type": "DialogFilter"
     },
     {
-      "id": 2682424996,
+      "id": 2522053591,
       "predicate": "dialogFilterChatlist",
       "params": [
         {
@@ -19284,12 +19418,16 @@ var SCHEMA_GLOBAL = {
           "type": "flags.26?true"
         },
         {
+          "name": "title_noanimate",
+          "type": "flags.28?true"
+        },
+        {
           "name": "id",
           "type": "int"
         },
         {
           "name": "title",
-          "type": "string"
+          "type": "TextWithEntities"
         },
         {
           "name": "emoticon",
@@ -20099,7 +20237,7 @@ var SCHEMA_GLOBAL = {
       "type": "GroupCall"
     },
     {
-      "id": 3583468812,
+      "id": 3455636451,
       "predicate": "groupCall",
       "params": [
         {
@@ -20177,6 +20315,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "version",
           "type": "int"
+        },
+        {
+          "name": "conference_from_call",
+          "type": "flags.14?long"
         }
       ],
       "type": "GroupCall"
@@ -21655,6 +21797,10 @@ var SCHEMA_GLOBAL = {
           "type": "flags.0?true"
         },
         {
+          "name": "include_upgrade",
+          "type": "flags.2?true"
+        },
+        {
           "name": "user_id",
           "type": "InputUser"
         },
@@ -21665,6 +21811,40 @@ var SCHEMA_GLOBAL = {
         {
           "name": "message",
           "type": "flags.1?TextWithEntities"
+        }
+      ],
+      "type": "InputInvoice"
+    },
+    {
+      "id": 1589539426,
+      "predicate": "inputInvoiceStarGiftUpgrade",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "keep_original_details",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "msg_id",
+          "type": "int"
+        }
+      ],
+      "type": "InputInvoice"
+    },
+    {
+      "id": 2923145709,
+      "predicate": "inputInvoiceStarGiftTransfer",
+      "params": [
+        {
+          "name": "msg_id",
+          "type": "int"
+        },
+        {
+          "name": "to_id",
+          "type": "InputUser"
         }
       ],
       "type": "InputInvoice"
@@ -23060,7 +23240,7 @@ var SCHEMA_GLOBAL = {
       "type": "chatlists.ChatlistInvite"
     },
     {
-      "id": 500007837,
+      "id": 4044279343,
       "predicate": "chatlists.chatlistInvite",
       "params": [
         {
@@ -23068,8 +23248,12 @@ var SCHEMA_GLOBAL = {
           "type": "#"
         },
         {
+          "name": "title_noanimate",
+          "type": "flags.1?true"
+        },
+        {
           "name": "title",
-          "type": "string"
+          "type": "TextWithEntities"
         },
         {
           "name": "emoticon",
@@ -26222,6 +26406,10 @@ var SCHEMA_GLOBAL = {
           "type": "flags.11?true"
         },
         {
+          "name": "stargift_upgrade",
+          "type": "flags.18?true"
+        },
+        {
           "name": "id",
           "type": "string"
         },
@@ -26759,7 +26947,7 @@ var SCHEMA_GLOBAL = {
       "type": "StarsGiveawayWinnersOption"
     },
     {
-      "id": 1237678029,
+      "id": 46953416,
       "predicate": "starGift",
       "params": [
         {
@@ -26809,6 +26997,45 @@ var SCHEMA_GLOBAL = {
         {
           "name": "last_sale_date",
           "type": "flags.1?int"
+        },
+        {
+          "name": "upgrade_stars",
+          "type": "flags.3?long"
+        }
+      ],
+      "type": "StarGift"
+    },
+    {
+      "id": 1779697613,
+      "predicate": "starGiftUnique",
+      "params": [
+        {
+          "name": "id",
+          "type": "long"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "num",
+          "type": "int"
+        },
+        {
+          "name": "owner_id",
+          "type": "long"
+        },
+        {
+          "name": "attributes",
+          "type": "Vector<StarGiftAttribute>"
+        },
+        {
+          "name": "availability_issued",
+          "type": "int"
+        },
+        {
+          "name": "availability_total",
+          "type": "int"
         }
       ],
       "type": "StarGift"
@@ -26835,7 +27062,7 @@ var SCHEMA_GLOBAL = {
       "type": "payments.StarGifts"
     },
     {
-      "id": 4003764846,
+      "id": 844641761,
       "predicate": "userStarGift",
       "params": [
         {
@@ -26849,6 +27076,14 @@ var SCHEMA_GLOBAL = {
         {
           "name": "unsaved",
           "type": "flags.5?true"
+        },
+        {
+          "name": "refunded",
+          "type": "flags.9?true"
+        },
+        {
+          "name": "can_upgrade",
+          "type": "flags.10?true"
         },
         {
           "name": "from_id",
@@ -26873,6 +27108,18 @@ var SCHEMA_GLOBAL = {
         {
           "name": "convert_stars",
           "type": "flags.4?long"
+        },
+        {
+          "name": "upgrade_stars",
+          "type": "flags.6?long"
+        },
+        {
+          "name": "can_export_at",
+          "type": "flags.7?int"
+        },
+        {
+          "name": "transfer_stars",
+          "type": "flags.8?long"
         }
       ],
       "type": "UserStarGift"
@@ -27204,6 +27451,185 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "messages.FoundStickers"
+    },
+    {
+      "id": 2966251031,
+      "predicate": "botVerifierSettings",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "can_modify_custom_description",
+          "type": "flags.1?true"
+        },
+        {
+          "name": "icon",
+          "type": "long"
+        },
+        {
+          "name": "company",
+          "type": "string"
+        },
+        {
+          "name": "custom_description",
+          "type": "flags.0?string"
+        }
+      ],
+      "type": "BotVerifierSettings"
+    },
+    {
+      "id": 4181513308,
+      "predicate": "botVerification",
+      "params": [
+        {
+          "name": "bot_id",
+          "type": "long"
+        },
+        {
+          "name": "icon",
+          "type": "long"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "type": "BotVerification"
+    },
+    {
+      "id": 970559507,
+      "predicate": "starGiftAttributeModel",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "document",
+          "type": "Document"
+        },
+        {
+          "name": "rarity_permille",
+          "type": "int"
+        }
+      ],
+      "type": "StarGiftAttribute"
+    },
+    {
+      "id": 330104601,
+      "predicate": "starGiftAttributePattern",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "document",
+          "type": "Document"
+        },
+        {
+          "name": "rarity_permille",
+          "type": "int"
+        }
+      ],
+      "type": "StarGiftAttribute"
+    },
+    {
+      "id": 2485589858,
+      "predicate": "starGiftAttributeBackdrop",
+      "params": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "center_color",
+          "type": "int"
+        },
+        {
+          "name": "edge_color",
+          "type": "int"
+        },
+        {
+          "name": "pattern_color",
+          "type": "int"
+        },
+        {
+          "name": "text_color",
+          "type": "int"
+        },
+        {
+          "name": "rarity_permille",
+          "type": "int"
+        }
+      ],
+      "type": "StarGiftAttribute"
+    },
+    {
+      "id": 3224129355,
+      "predicate": "starGiftAttributeOriginalDetails",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "sender_id",
+          "type": "flags.0?long"
+        },
+        {
+          "name": "recipient_id",
+          "type": "long"
+        },
+        {
+          "name": "date",
+          "type": "int"
+        },
+        {
+          "name": "message",
+          "type": "flags.1?TextWithEntities"
+        }
+      ],
+      "type": "StarGiftAttribute"
+    },
+    {
+      "id": 377215243,
+      "predicate": "payments.starGiftUpgradePreview",
+      "params": [
+        {
+          "name": "sample_attributes",
+          "type": "Vector<StarGiftAttribute>"
+        }
+      ],
+      "type": "payments.StarGiftUpgradePreview"
+    },
+    {
+      "id": 1658259128,
+      "predicate": "users.users",
+      "params": [
+        {
+          "name": "users",
+          "type": "Vector<User>"
+        }
+      ],
+      "type": "users.Users"
+    },
+    {
+      "id": 828000628,
+      "predicate": "users.usersSlice",
+      "params": [
+        {
+          "name": "count",
+          "type": "int"
+        },
+        {
+          "name": "users",
+          "type": "Vector<User>"
+        }
+      ],
+      "type": "users.Users"
     }
   ],
   "methods": [
@@ -30916,6 +31342,14 @@ var SCHEMA_GLOBAL = {
           "type": "flags.1?true"
         },
         {
+          "name": "groups_only",
+          "type": "flags.2?true"
+        },
+        {
+          "name": "users_only",
+          "type": "flags.3?true"
+        },
+        {
           "name": "folder_id",
           "type": "flags.0?int"
         },
@@ -34505,6 +34939,29 @@ var SCHEMA_GLOBAL = {
       "type": "messages.FoundStickers"
     },
     {
+      "id": 1517122453,
+      "method": "messages.reportMessagesDelivery",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "push",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "id",
+          "type": "Vector<int>"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
       "id": 3990128682,
       "method": "updates.getState",
       "params": [],
@@ -36654,6 +37111,48 @@ var SCHEMA_GLOBAL = {
       "type": "StarRefProgram"
     },
     {
+      "id": 2341068733,
+      "method": "bots.setCustomVerification",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "enabled",
+          "type": "flags.1?true"
+        },
+        {
+          "name": "bot",
+          "type": "flags.0?InputUser"
+        },
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        },
+        {
+          "name": "custom_description",
+          "type": "flags.2?string"
+        }
+      ],
+      "type": "Bool"
+    },
+    {
+      "id": 676707937,
+      "method": "bots.getBotRecommendations",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "bot",
+          "type": "InputUser"
+        }
+      ],
+      "type": "users.Users"
+    },
+    {
       "id": 924093883,
       "method": "payments.getPaymentForm",
       "params": [
@@ -37167,7 +37666,7 @@ var SCHEMA_GLOBAL = {
       "type": "payments.UserStarGifts"
     },
     {
-      "id": 2276257934,
+      "id": 2466065070,
       "method": "payments.saveStarGift",
       "params": [
         {
@@ -37179,10 +37678,6 @@ var SCHEMA_GLOBAL = {
           "type": "flags.0?true"
         },
         {
-          "name": "user_id",
-          "type": "InputUser"
-        },
-        {
           "name": "msg_id",
           "type": "int"
         }
@@ -37190,13 +37685,9 @@ var SCHEMA_GLOBAL = {
       "type": "Bool"
     },
     {
-      "id": 69328935,
+      "id": 1920404611,
       "method": "payments.convertStarGift",
       "params": [
-        {
-          "name": "user_id",
-          "type": "InputUser"
-        },
         {
           "name": "msg_id",
           "type": "int"
@@ -37337,6 +37828,62 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "payments.ConnectedStarRefBots"
+    },
+    {
+      "id": 2627386545,
+      "method": "payments.getStarGiftUpgradePreview",
+      "params": [
+        {
+          "name": "gift_id",
+          "type": "long"
+        }
+      ],
+      "type": "payments.StarGiftUpgradePreview"
+    },
+    {
+      "id": 3478062977,
+      "method": "payments.upgradeStarGift",
+      "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "keep_original_details",
+          "type": "flags.0?true"
+        },
+        {
+          "name": "msg_id",
+          "type": "int"
+        }
+      ],
+      "type": "Updates"
+    },
+    {
+      "id": 859813158,
+      "method": "payments.transferStarGift",
+      "params": [
+        {
+          "name": "msg_id",
+          "type": "int"
+        },
+        {
+          "name": "to_id",
+          "type": "InputUser"
+        }
+      ],
+      "type": "Updates"
+    },
+    {
+      "id": 3036865701,
+      "method": "payments.getUserStarGift",
+      "params": [
+        {
+          "name": "msg_id",
+          "type": "Vector<int>"
+        }
+      ],
+      "type": "payments.UserStarGifts"
     },
     {
       "id": 2418125671,
@@ -37546,7 +38093,7 @@ var SCHEMA_GLOBAL = {
       "type": "DataJSON"
     },
     {
-      "id": 1124046573,
+      "id": 2797887500,
       "method": "phone.requestCall",
       "params": [
         {
@@ -37560,6 +38107,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "user_id",
           "type": "InputUser"
+        },
+        {
+          "name": "conference_call",
+          "type": "flags.1?InputGroupCall"
         },
         {
           "name": "random_id",
@@ -37749,7 +38300,7 @@ var SCHEMA_GLOBAL = {
       "type": "Updates"
     },
     {
-      "id": 2972909435,
+      "id": 3592297971,
       "method": "phone.joinGroupCall",
       "params": [
         {
@@ -37775,6 +38326,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "invite_hash",
           "type": "flags.1?string"
+        },
+        {
+          "name": "key_fingerprint",
+          "type": "flags.3?long"
         },
         {
           "name": "params",
@@ -38130,6 +38685,21 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "Bool"
+    },
+    {
+      "id": 3754494379,
+      "method": "phone.createConferenceCall",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPhoneCall"
+        },
+        {
+          "name": "key_fingerprint",
+          "type": "long"
+        }
+      ],
+      "type": "phone.PhoneCall"
     },
     {
       "id": 4075959050,
