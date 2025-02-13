@@ -1,4 +1,4 @@
-var LAYER_NUMBER = 198
+var LAYER_NUMBER = 199
 
 var SCHEMA_GLOBAL = {
   "constructors": [
@@ -7901,12 +7901,12 @@ var SCHEMA_GLOBAL = {
       "type": "Update"
     },
     {
-      "id": 1372224236,
+      "id": 2339528654,
       "predicate": "updatePaidReactionPrivacy",
       "params": [
         {
           "name": "private",
-          "type": "Bool"
+          "type": "PaidReactionPrivacy"
         }
       ],
       "type": "Update"
@@ -10048,6 +10048,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "has_large_media",
           "type": "flags.13?true"
+        },
+        {
+          "name": "video_cover_photo",
+          "type": "flags.14?true"
         },
         {
           "name": "id",
@@ -27159,7 +27163,7 @@ var SCHEMA_GLOBAL = {
       "type": "StarGift"
     },
     {
-      "id": 4076764746,
+      "id": 1549979985,
       "predicate": "starGiftUnique",
       "params": [
         {
@@ -27205,6 +27209,10 @@ var SCHEMA_GLOBAL = {
         {
           "name": "availability_total",
           "type": "int"
+        },
+        {
+          "name": "gift_address",
+          "type": "flags.3?string"
         }
       ],
       "type": "StarGift"
@@ -27878,6 +27886,29 @@ var SCHEMA_GLOBAL = {
         }
       ],
       "type": "payments.StarGiftWithdrawalUrl"
+    },
+    {
+      "id": 543872158,
+      "predicate": "paidReactionPrivacyDefault",
+      "params": [],
+      "type": "PaidReactionPrivacy"
+    },
+    {
+      "id": 520887001,
+      "predicate": "paidReactionPrivacyAnonymous",
+      "params": [],
+      "type": "PaidReactionPrivacy"
+    },
+    {
+      "id": 3698130160,
+      "predicate": "paidReactionPrivacyPeer",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        }
+      ],
+      "type": "PaidReactionPrivacy"
     }
   ],
   "methods": [
@@ -28062,6 +28093,21 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "secret",
+          "type": "string"
+        },
+        {
+          "name": "query",
+          "type": "!X"
+        }
+      ],
+      "type": "X"
+    },
+    {
+      "id": 2914717588,
+      "method": "invokeWithReCaptcha",
+      "params": [
+        {
+          "name": "token",
           "type": "string"
         },
         {
@@ -34997,7 +35043,7 @@ var SCHEMA_GLOBAL = {
       "type": "WebViewResult"
     },
     {
-      "id": 2648090235,
+      "id": 1488702288,
       "method": "messages.sendPaidReaction",
       "params": [
         {
@@ -35022,13 +35068,13 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "private",
-          "type": "flags.0?Bool"
+          "type": "flags.0?PaidReactionPrivacy"
         }
       ],
       "type": "Updates"
     },
     {
-      "id": 2224739223,
+      "id": 1129874869,
       "method": "messages.togglePaidReactionPrivacy",
       "params": [
         {
@@ -35041,7 +35087,7 @@ var SCHEMA_GLOBAL = {
         },
         {
           "name": "private",
-          "type": "Bool"
+          "type": "PaidReactionPrivacy"
         }
       ],
       "type": "Bool"
@@ -36441,9 +36487,17 @@ var SCHEMA_GLOBAL = {
       "type": "Updates"
     },
     {
-      "id": 231174382,
+      "id": 3884295231,
       "method": "channels.getSendAs",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "for_paid_reactions",
+          "type": "flags.0?true"
+        },
         {
           "name": "peer",
           "type": "InputPeer"

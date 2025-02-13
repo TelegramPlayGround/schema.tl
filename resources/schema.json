@@ -7899,12 +7899,12 @@
       "type": "Update"
     },
     {
-      "id": 1372224236,
+      "id": 2339528654,
       "predicate": "updatePaidReactionPrivacy",
       "params": [
         {
           "name": "private",
-          "type": "Bool"
+          "type": "PaidReactionPrivacy"
         }
       ],
       "type": "Update"
@@ -10046,6 +10046,10 @@
         {
           "name": "has_large_media",
           "type": "flags.13?true"
+        },
+        {
+          "name": "video_cover_photo",
+          "type": "flags.14?true"
         },
         {
           "name": "id",
@@ -27157,7 +27161,7 @@
       "type": "StarGift"
     },
     {
-      "id": 4076764746,
+      "id": 1549979985,
       "predicate": "starGiftUnique",
       "params": [
         {
@@ -27203,6 +27207,10 @@
         {
           "name": "availability_total",
           "type": "int"
+        },
+        {
+          "name": "gift_address",
+          "type": "flags.3?string"
         }
       ],
       "type": "StarGift"
@@ -27876,6 +27884,29 @@
         }
       ],
       "type": "payments.StarGiftWithdrawalUrl"
+    },
+    {
+      "id": 543872158,
+      "predicate": "paidReactionPrivacyDefault",
+      "params": [],
+      "type": "PaidReactionPrivacy"
+    },
+    {
+      "id": 520887001,
+      "predicate": "paidReactionPrivacyAnonymous",
+      "params": [],
+      "type": "PaidReactionPrivacy"
+    },
+    {
+      "id": 3698130160,
+      "predicate": "paidReactionPrivacyPeer",
+      "params": [
+        {
+          "name": "peer",
+          "type": "InputPeer"
+        }
+      ],
+      "type": "PaidReactionPrivacy"
     }
   ],
   "methods": [
@@ -28060,6 +28091,21 @@
         },
         {
           "name": "secret",
+          "type": "string"
+        },
+        {
+          "name": "query",
+          "type": "!X"
+        }
+      ],
+      "type": "X"
+    },
+    {
+      "id": 2914717588,
+      "method": "invokeWithReCaptcha",
+      "params": [
+        {
+          "name": "token",
           "type": "string"
         },
         {
@@ -34995,7 +35041,7 @@
       "type": "WebViewResult"
     },
     {
-      "id": 2648090235,
+      "id": 1488702288,
       "method": "messages.sendPaidReaction",
       "params": [
         {
@@ -35020,13 +35066,13 @@
         },
         {
           "name": "private",
-          "type": "flags.0?Bool"
+          "type": "flags.0?PaidReactionPrivacy"
         }
       ],
       "type": "Updates"
     },
     {
-      "id": 2224739223,
+      "id": 1129874869,
       "method": "messages.togglePaidReactionPrivacy",
       "params": [
         {
@@ -35039,7 +35085,7 @@
         },
         {
           "name": "private",
-          "type": "Bool"
+          "type": "PaidReactionPrivacy"
         }
       ],
       "type": "Bool"
@@ -36439,9 +36485,17 @@
       "type": "Updates"
     },
     {
-      "id": 231174382,
+      "id": 3884295231,
       "method": "channels.getSendAs",
       "params": [
+        {
+          "name": "flags",
+          "type": "#"
+        },
+        {
+          "name": "for_paid_reactions",
+          "type": "flags.0?true"
+        },
         {
           "name": "peer",
           "type": "InputPeer"
